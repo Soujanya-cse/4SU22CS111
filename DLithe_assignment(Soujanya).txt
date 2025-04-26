@@ -1,0 +1,64 @@
+Question 1:
+def maxStolenValue(val):
+    prev1 = 0  
+    prev2 = 0  
+
+    for num in val:
+        current = max(num + prev2, prev1)
+        prev2 = prev1
+        prev1 = current
+
+    return prev1
+
+val = [6, 7, 1, 3, 8, 2, 5]
+print(maxStolenValue(val))
+
+-------------------------------------------------------------------------------
+
+Question 2:
+#include <stdio.h>
+
+int main() {
+    int i, j;
+    
+    for(i = 0; i < 5; i++) {
+        for(j = 0; j < 5; j++) {
+            if(i % 2 == 0 && j == 4) {
+                printf("%d", i + 2); // Even row, last column different
+            }
+            else if(i % 2 == 1 && j == 0) {
+                printf("%d", i + 2); // Odd row, first column different
+            }
+            else {
+                printf("%d", i + 1); // Normal value
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+------------------------------------------------------------------------------------
+Question 3:
+def is_disarium(no):
+    digits = [int(d) for d in str(no)]
+    sum_digits = 0
+    steps = []
+
+    for idx, digit in enumerate(digits, start=1):
+        powered = digit ** idx
+        sum_digits += powered
+        steps.append(f"{digit}^{idx}={powered}")
+
+    print(f"{no} -> " + " + ".join(steps))
+    print(f"Sum = {sum_digits}")
+
+    if sum_digits == no:
+        print(f"{no} is a Disarium number")
+    else:
+        print(f"{no} is not a Disarium number")
+
+# Main
+no = int(input("Enter a number: "))
+is_disarium(no)
